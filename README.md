@@ -1,36 +1,34 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Recall
 
-## Getting Started
+**AI-powered adaptive study assistant that turns your notes into flashcards and schedules reviews using spaced repetition.**
 
-First, run the development server:
+Built with Next.js, TypeScript, Drizzle ORM, and Groq LLM.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Live Demo
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+🔗 [recall-xxxxx.vercel.app](https://recall-xxxxx.vercel.app) *(placeholder — will update after deploy)*
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Features
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **AI flashcard generation** — paste notes, get 5–20 focused question/answer cards
+- **Spaced repetition (SM-2)** — each card is scheduled at the optimal review interval
+- **Study sessions** — flip cards, rate them Forgot / Hard / Good / Easy
+- **Progress tracking** — see how many cards are due today per deck
+- **Private by default** — every account can only access their own decks and cards
+- **Auth built-in** — email + password with bcrypt hashing
 
-## Learn More
+## Tech Stack
 
-To learn more about Next.js, take a look at the following resources:
+| Layer | Choice |
+|-------|--------|
+| Framework | Next.js 16 (App Router) |
+| Language | TypeScript |
+| Styling | Tailwind CSS |
+| Auth | NextAuth v5 (credentials) |
+| Database | SQLite (dev) / Postgres (prod) |
+| ORM | Drizzle ORM |
+| LLM | Groq (Llama / GPT-OSS models) |
+| Validation | Zod |
+| Deployment | Vercel |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## How It Works
