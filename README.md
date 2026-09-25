@@ -32,3 +32,37 @@ Built with Next.js, TypeScript, Drizzle ORM, and Groq LLM.
 | Deployment | Vercel |
 
 ## How It Works
+
+Paste notes
+│
+▼
+Groq LLM generates
+structured flashcards
+│
+▼
+Validated with Zod
+│
+▼
+Stored in Postgres
+│
+▼
+SM-2 schedules reviews
+│
+▼
+Study sessions
+update intervals
+
+## Screenshots
+
+*(to be added after deploy)*
+
+## Local Setup
+
+```bash
+git clone https://github.com/chacha-debug/recall.git
+cd recall
+npm install
+cp .env.example .env.local
+# Edit .env.local and add your GROQ_API_KEY and NEXTAUTH_SECRET
+npm run db:push
+npm run dev
