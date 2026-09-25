@@ -1,10 +1,8 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
-
-  // NextAuth v5 uses the "authjs" prefix by default
   const sessionToken =
     request.cookies.get('authjs.session-token') ||
     request.cookies.get('__Secure-authjs.session-token');
@@ -19,5 +17,5 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/dashboard/:path*', '/decks/:path*'],
+  matcher: ['/dashboard/:path*', '/decks/:path*', '/new/:path*'],
 };

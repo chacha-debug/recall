@@ -76,7 +76,7 @@ export default function NewDeckPage() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-50 p-6">
+    <div className="max-w-3xl mx-auto p-6">
       <div className="max-w-3xl mx-auto">
         <h1 className="text-3xl font-bold text-slate-900 mb-2">New deck</h1>
         <p className="text-slate-500 mb-6">
