@@ -44,5 +44,3 @@ next-env.d.ts
 
 # Local database
 dev.db*
-
-drizzle.config.ts

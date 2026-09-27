@@ -6,7 +6,13 @@ Built with Next.js, TypeScript, Drizzle ORM, and Groq LLM.
 
 ## Live Demo
 
-🔗 **https://recall.vercel.app** *(update after deploy)*
+🔗 **https://recall-chacha-debug.vercel.app** *(update after first deploy)*
+
+## Screenshots
+
+| Homepage | Dashboard | Review |
+|----------|-----------|--------|
+| ![Home](docs/screenshots/home.png) | ![Dashboard](docs/screenshots/dashboard.png) | ![Review](docs/screenshots/review.png) |
 
 ## Features
 
