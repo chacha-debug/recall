@@ -1,11 +1,18 @@
-import 'server-only'; //prevents this file from being bundled into client-side code
-import Database from 'better-sqlite3';
-import { drizzle } from 'drizzle-orm/better-sqlite3';
+import 'server-only';
+import { drizzle } from 'drizzle-orm/postgres-js';
+import postgres from 'postgres';
 import * as schema from './schema';
 
-const sqlite = new Database(process.env.DATABASE_URL ?? './dev.db');
+const url = process.env.POSTGRES_URL;
+if (!url) {
+  throw new Error('POSTGRES_URL is not set');
+}
 
-sqlite.pragma('journal_mode = WAL');
-sqlite.pragma('foreign_keys = ON');
+// Strip query params and force SSL — Neon requires SSL
+const queryClient = postgres(url.split('?')[0], {
+  prepare: false,
+  ssl: 'require',
+  max: 1, // single connection for serverless
+});
 
-export const db = drizzle(sqlite, { schema });
+export const db = drizzle(queryClient, { schema });

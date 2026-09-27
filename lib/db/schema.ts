@@ -1,55 +1,43 @@
-import { sqliteTable, text, integer, real } from 'drizzle-orm/sqlite-core';
-import { sql } from 'drizzle-orm';
+import { pgTable, text, integer, real, timestamp } from 'drizzle-orm/pg-core';
 
-export const users = sqliteTable('users', {
+export const users = pgTable('users', {
   id: text('id').primaryKey(),
   email: text('email').notNull().unique(),
   passwordHash: text('password_hash').notNull(),
-  createdAt: integer('created_at', { mode: 'timestamp' })
-    .notNull()
-    .default(sql`(unixepoch())`),
+  createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
 });
 
-export const decks = sqliteTable('decks', {
+export const decks = pgTable('decks', {
   id: text('id').primaryKey(),
   userId: text('user_id')
     .notNull()
     .references(() => users.id, { onDelete: 'cascade' }),
   title: text('title').notNull(),
   sourceText: text('source_text').notNull(),
-  createdAt: integer('created_at', { mode: 'timestamp' })
-    .notNull()
-    .default(sql`(unixepoch())`),
+  createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
 });
 
-export const cards = sqliteTable('cards', {
+export const cards = pgTable('cards', {
   id: text('id').primaryKey(),
   deckId: text('deck_id')
     .notNull()
     .references(() => decks.id, { onDelete: 'cascade' }),
   front: text('front').notNull(),
   back: text('back').notNull(),
-  // Spaced repetition fields (SM-2)
   easeFactor: real('ease_factor').notNull().default(2.5),
   interval: integer('interval').notNull().default(0),
   repetitions: integer('repetitions').notNull().default(0),
-  nextReviewAt: integer('next_review_at', { mode: 'timestamp' })
-    .notNull()
-    .default(sql`(unixepoch())`),
-  createdAt: integer('created_at', { mode: 'timestamp' })
-    .notNull()
-    .default(sql`(unixepoch())`),
+  nextReviewAt: timestamp('next_review_at', { withTimezone: true }).notNull().defaultNow(),
+  createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
 });
 
-export const reviews = sqliteTable('reviews', {
+export const reviews = pgTable('reviews', {
   id: text('id').primaryKey(),
   cardId: text('card_id')
     .notNull()
     .references(() => cards.id, { onDelete: 'cascade' }),
-  rating: integer('rating').notNull(), // 0=forgot, 1=hard, 2=good, 3=easy
-  reviewedAt: integer('reviewed_at', { mode: 'timestamp' })
-    .notNull()
-    .default(sql`(unixepoch())`),
+  rating: integer('rating').notNull(),
+  reviewedAt: timestamp('reviewed_at', { withTimezone: true }).notNull().defaultNow(),
 });
 
 export type User = typeof users.$inferSelect;
