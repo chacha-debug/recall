@@ -4,9 +4,9 @@ import { resolve } from 'path';
 
 config({ path: resolve(process.cwd(), '.env.local') });
 
-let url = process.env.POSTGRES_URL;
+let url = process.env.DATABASE_URL;
 if (!url) {
-  throw new Error('POSTGRES_URL is not set');
+  throw new Error('DATABASE_URL is not set');
 }
 
 url = url.replace(/^"|"$/g, '').trim().split('?')[0];
