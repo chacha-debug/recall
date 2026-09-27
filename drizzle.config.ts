@@ -1,11 +1,22 @@
 import type { Config } from 'drizzle-kit';
+import { config } from 'dotenv';
+import { resolve } from 'path';
+
+config({ path: resolve(process.cwd(), '.env.local') });
+
+let url = process.env.POSTGRES_URL;
+if (!url) {
+  throw new Error('POSTGRES_URL is not set');
+}
+
+url = url.replace(/^"|"$/g, '').trim().split('?')[0];
 
 export default {
   schema: './lib/db/schema.ts',
   out: './drizzle',
   dialect: 'postgresql',
   dbCredentials: {
-    url: 'postgresql://neondb_owner:npg_d1sADNh8flcE@ep-orange-snow-zasdwahd-pooler.c-2.eu-west-2.aws.neon.tech/neondb?channel_binding=require&sslmode=require',
+    url,
     ssl: 'require',
   },
 } satisfies Config;
